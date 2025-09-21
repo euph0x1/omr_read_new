@@ -1,0 +1,30 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# VSCode settings
+.vscode/
+
+# Streamlit temporary files
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Data and results (optional: if you don't want to push large files)
+data/
+results/
+
+# Logs
+*.log
+
+# SQLite database (optional if you want to keep locally)
+*.db
