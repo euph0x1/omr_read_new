@@ -86,7 +86,7 @@ Saved to results/results.csv
 Database updated: results/results.db
 ```
 
-```bash
+<pre>
 .
 ├── data/               # Input OMR images (+ answer key file(s))
 ├── modules/            # Helper modules (preprocessing, detection, scoring, etc.)
@@ -94,7 +94,7 @@ Database updated: results/results.db
 ├── main.py             # Entry point for running evaluation
 ├── requirements.txt    # List of required Python packages
 └── README.md           # Project documentation
-```
+</pre>
 
 ## 🚀 Future Work
 
