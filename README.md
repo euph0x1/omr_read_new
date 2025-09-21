@@ -7,43 +7,34 @@ Manual evaluation of OMR (Optical Mark Recognition) sheets is:
 - Prone to human error (misreading, fatigue, inconsistent marking).  
 - Difficult to organize results efficiently for multiple subjects.  
 
-This project aims to automate reading, scoring, and storing of OMR sheets to speed up the process and improve accuracy.
+This project automates reading, scoring, and storing of OMR sheets to speed up the process and improve accuracy.
 
 ---
 
 ## 🔍 Approach
 The system follows these steps:
 
-1. **Preprocessing**  
-   Use OpenCV to prepare input OMR sheet images (e.g. resizing, thresholding, denoising, alignment) so that bubble detection works reliably.
-
-2. **Bubble/Mark Detection**  
-   Identify which bubbles are filled using contour detection or related image analysis in the `modules` folder.
-
-3. **Answer Comparison**  
-   Compare detected answers against a predefined answer key to decide correctness.
-
-4. **Scoring**  
-   Compute per-subject scores and overall total scores.
-
-5. **Results Storage**  
-   Save the final results in both CSV and SQLite database formats, so they are easy to view, share, and query.
+1. **Preprocessing** – Use OpenCV to clean, resize, threshold, and align OMR sheet images.  
+2. **Bubble/Mark Detection** – Detect filled bubbles via contour analysis.  
+3. **Answer Comparison** – Match detected answers with the predefined answer key.  
+4. **Scoring** – Calculate per-subject and total scores.  
+5. **Results Storage** – Save results to both **CSV** and **SQLite database**.  
+6. **Web App (Streamlit)** – Upload OMR sheets via browser, view results instantly, and download CSV reports.
 
 ---
 
 ## ⚙️ Tech Stack
-
 - **Python 3.x**  
-- **OpenCV** – Image processing and detection  
-- **Pandas** – Data handling, tabular operations  
-- **SQLite** – Storage of results  
-- (Other modules in `modules/` as helpers for preprocessing, detection, etc.)
+- **OpenCV** – Image processing & bubble detection  
+- **Pandas** – Data handling and CSV export  
+- **SQLite** – Persistent results storage  
+- **Streamlit** – Web application interface  
 
 ---
 
 ## 🛠️ Installation
 
-To get the project running locally:
+Set up the project locally:
 
 ```bash
 # 1. Clone the repository
@@ -59,54 +50,60 @@ venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 
 # 4. Prepare input data
-# Put scanned OMR sheet images in:
+# Put OMR sheet images in:
 data/
-# (If needed) Place the answer key in a JSON or other format in data/, e.g.:
-# data/answer_key.json or as required by your implementation
 ```
 
 ## ▶️ Usage
+Option 1: Command Line
 ```
 python main.py
 ```
++ Processes all sheets in data/
 
-The script will process images from the data/ directory.
-
-+ Results will be saved into:
++ Saves results to:
 
   + results/results.csv
 
-  + results/results.db (SQLite database)
+  + results/results.db
 
-+ Example console output might look like:
-```
+Console example:
+<pre>
 Processing sheet: sheet1.png …
 Detected 45 / 50 correct
 Saved to results/results.csv
 Database updated: results/results.db
-```
+</pre>
 
+Option 2: Streamlit Web App
+
+Run the web interface with:
+```
+streamlit run streamlit_app.py
+```
+Features:
+
++ Upload OMR sheet images via browser
+
++ View processed results instantly
+
++ Download CSV of results
+
++ Results are also saved automatically in results/
+
+
+## 📂 Repository Structure
 <pre>
-.
-├── data/               # Input OMR images (+ answer key file(s))
+   .
+├── data/               # Input OMR images + answer key
 ├── modules/            # Helper modules (preprocessing, detection, scoring, etc.)
 ├── results/            # Outputs: CSV + SQLite DB
-├── main.py             # Entry point for running evaluation
-├── requirements.txt    # List of required Python packages
+├── main.py             # CLI entry point
+├── streamlit_app.py    # Streamlit web app entry point
+├── requirements.txt    # Project dependencies
 └── README.md           # Project documentation
 </pre>
 
-## 🚀 Future Work
 
-Build a web interface (e.g. using Streamlit or Flask) for uploading sheets and viewing results.
-
-Use a machine-learning based method to improve bubble detection, especially in noisy or misaligned sheets.
-
-Support multiple OMR sheet layouts/formats automatically.
-
-Add reporting dashboards or visualizations (scores per student, item-wise analysis).
-
-Add error logging and more robust exception handling for bad or unreadable images.
-
-
-💡 Contributions welcome! Feel free to raise issues or submit pull requests to improve accuracy, usability, or add features.
+lace the answer key in:
+data/answer_key.json
