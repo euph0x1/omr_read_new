@@ -52,6 +52,8 @@ pip install -r requirements.txt
 # 4. Prepare input data
 # Put OMR sheet images in:
 data/
+# Place the answer key in:
+data/answer_key.json
 ```
 
 ## ▶️ Usage
@@ -103,7 +105,3 @@ Features:
 ├── requirements.txt    # Project dependencies
 └── README.md           # Project documentation
 </pre>
-
-
-lace the answer key in:
-data/answer_key.json
